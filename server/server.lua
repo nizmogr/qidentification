@@ -31,30 +31,61 @@ AddEventHandler('qidentification:createCard', function(source,url,type)
 		local sex, identifier = xPlayer.variables.sex
 		if sex == 'm' then sex = 'male' elseif sex == 'f' then sex = 'female' end
 		card_metadata.description = ('Sex: %s | DOB: %s'):format( sex, xPlayer.variables.dateofbirth )
+		xPlayer.addInventoryItem(type, 1, card_metadata)
 	elseif type == "drivers_license" then 
 		MySQL.Async.fetchAll('SELECT type FROM user_licenses WHERE owner = @identifier', {['@identifier'] = xPlayer.identifier},
 		function (licenses)
+			local status = false
 			for i=1, #licenses, 1 do
 				if licenses[i].type == 'drive' or licenses[i].type == 'drive_bike' or licenses[i].type == 'drive_truck' then
 					card_metadata.licenses = licenses
-				end
+					xPlayer.addInventoryItem(type, 1, card_metadata)
+					status = true
+				else 
+					TriggerClientEvent('t-notify:client:Alert', source, {
+						style = 'error',
+						message = 'Δεν έχεις δίπλωμα οδήγησης, πήγαινε σε μία σχολή για να βγάλεις',
+						duration  =  4000
+					})
+					status = true
+				end	
 			end
+			if status == false then 
+				TriggerClientEvent('t-notify:client:Alert', source, {
+					style = 'error',
+					message = 'Δεν έχεις δίπλωμα οδήγησης, πήγαινε σε μία σχολή για να βγάλεις',
+					duration  =  4000
+				})
+			end		
 		end)
-		TriggerEvent('esx_license:addLicense', source, 'drive', function()
-		end)
+		
 	elseif type == "firearms_license" then 
 		MySQL.Async.fetchAll('SELECT type FROM user_licenses WHERE owner = @identifier', {['@identifier'] = xPlayer.identifier},
 		function (licenses)
+			local status = false
 			for i=1, #licenses, 1 do
 				if licenses[i].type == 'weapon' then
 					card_metadata.licenses = licenses
+					xPlayer.addInventoryItem(type, 1, card_metadata)
+					status = true
+				else
+					TriggerClientEvent('t-notify:client:Alert', source, {
+						style = 'error',
+						message = 'Δεν έχεις άδεια οπλοφορίας, ',
+						duration  =  4000
+					})
+					status = true
 				end
 			end
+			if status == false then 
+				TriggerClientEvent('t-notify:client:Alert', source, {
+					style = 'error',
+					message = 'Δεν έχεις δίπλωμα οδήγησης',
+					duration  =  4000
+				})
+			end
 		end)
-			TriggerEvent('esx_license:addLicense', source, 'weapon', function()
-			end)
 	end
-	xPlayer.addInventoryItem(type, 1, card_metadata)
 end)
 
 -- Server event to call open identification card on valid players
