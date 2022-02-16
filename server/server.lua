@@ -71,7 +71,7 @@ AddEventHandler('qidentification:createCard', function(source,url,type)
 				else
 					TriggerClientEvent('t-notify:client:Alert', source, {
 						style = 'error',
-						message = 'Δεν έχεις άδεια οπλοφορίας, ',
+						message = 'Δεν έχεις άδεια οπλοφορίας, πήγαινε σε ένα gunshop να αγοράσεις',
 						duration  =  4000
 					})
 					status = true
@@ -80,7 +80,7 @@ AddEventHandler('qidentification:createCard', function(source,url,type)
 			if status == false then 
 				TriggerClientEvent('t-notify:client:Alert', source, {
 					style = 'error',
-					message = 'Δεν έχεις δίπλωμα οδήγησης',
+					message = 'Δεν έχεις άδεια οπλοφορίας, πήγαινε σε ένα gunshop να αγοράσεις',
 					duration  =  4000
 				})
 			end
