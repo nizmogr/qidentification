@@ -5,10 +5,10 @@ $(document).ready(function(){
 	if (event.data.action == 'open') {
 		console.log("open requested")
 	  var metadata	= event.data.metadata;
-	  var type		= event.data.metadata.cardtype;
+	  var type	= event.data.metadata.cardtype;
 	  var licenseData = metadata.licenses;
-	  var sex		 = metadata.sex;
-	  var mugshot	 = metadata.mugshoturl
+	  var sex	= metadata.sex;
+	  var mugshot	= metadata.mugshoturl
 	  console.log(type)
 	  if ( type == 'identification' || type == null || type == "drivers_license") {
 		console.log("It's a drivers license")
@@ -17,9 +17,9 @@ $(document).ready(function(){
 		$('#fname').css('color', '#282828');
 
 		if ( sex.toLowerCase() == 'm' ) {
-		  $('#sex').text('m');
+		  $('#sex').text('α');
 		} else {
-		  $('#sex').text('f');
+		  $('#sex').text('θ');
 		}
 		$('img').attr('src', mugshot);
 		$('#idnum').text(metadata.citizenid);
@@ -30,7 +30,7 @@ $(document).ready(function(){
 		var inches = metadata.height
 		var feet = Math.floor(inches / 12);
 		inches %= 12;
-		$('#height').text(feet + "ft " + inches + 'in');
+		$('#height').text(feet + "μ. " + inches + 'εκ.');
 		$('#signature').text(metadata.firstName + ' ' + metadata.lastName);
 
 		if ( type == 'drivers_license' ) {
