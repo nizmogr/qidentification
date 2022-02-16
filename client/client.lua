@@ -20,7 +20,7 @@ exports('identification', function(data, slot)
 			end
 		end)
 	else
-		ox_inventory:notify({text = 'License is in cooldown.'})
+		ox_inventory:notify({text = 'Περίμενε 10 δεύτερα και ξαναπροσπάθησε.'})
 	end
 end)
 
