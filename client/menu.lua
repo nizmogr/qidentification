@@ -25,8 +25,8 @@ AddEventHandler('qidentification:requestLicense',function()
 		print(ESX.DumpTable(data))
 		table.insert(sendMenu,{
 			id = #sendMenu + 1,
-			header = "<span class='target-icon'><i class='fa-solid fa-id-card fa-fw'></i></span> Request "..data.label,
-			txt = "$"..data.cost,
+			header = "<span class='target-icon'><i class='fa-solid fa-id-card fa-fw'></i></span> Αιτήση για "..data.label,
+			txt = "€"..data.cost,
 			params = { 
 				event = "qidentification:applyForLicense",
 				args = {
