@@ -28,8 +28,8 @@ $(document).ready(function(){
 		$('#fname').text(metadata.firstName);
 		$('#dob').text(metadata.dateofbirth);
 		var inches = metadata.height
-		var feet = Math.floor(inches / 12);
-		inches %= 12;
+		var feet = Math.floor(inches / 100);
+		inches %= 100;
 		$('#height').text(feet + "μ. " + inches + 'εκ.');
 		$('#signature').text(metadata.firstName + ' ' + metadata.lastName);
 
