@@ -17,6 +17,7 @@ or
 By default this resource needs these resources, however the core functionality (creating identification cards, metadata, showing identification cards) will still work if you remove the appropriate code in peds.lua and menu.lua
 * [qtarget](https://github.com/overextended/qtarget)
 * [nh-context](https://github.com/LukeWasTakenn/nh-context)
+* [t-notify](https://github.com/TasoOneAsia/t-notify)
 
 # Installation
 1. Drag and drop into your resource folder
